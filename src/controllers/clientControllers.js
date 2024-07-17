@@ -50,9 +50,31 @@ const createClient = (req,res) => {
   }
 }
 
+const updateClient = (req, res) => {
+  let id = req.params.id
+  const indice = livros.findIndex((item) => item.id == Number(id))
+
+  livros[indice] = req.body
+  
+  res.status(201).send('Livrs atualizado com sucesso')
+  
+}
+
+const deleteClient = (req, res) => {
+  let id = req.params.id
+  const indice = livros.findIndex((item) => item.id == Number(id))
+
+  livros.splice(indice, 1)
+
+  res.status(200).send('Foi excluido com sucesso')
+  
+}
+
 
 module.exports = {
   readClient,
   readOneClient,
-  createClient
+  createClient,
+  updateClient,
+  deleteClient
 }
